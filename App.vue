@@ -5,7 +5,6 @@
       v-model="meeting"
       :date="date"
       :loading="loading"
-      :class-names="classNames"
       :meetings-days="meetingsDays"
       @next-date="nextDate"
       @previous-date="previousDate"
@@ -48,3 +47,4 @@ export default {
   },
 };
 </script>
+
