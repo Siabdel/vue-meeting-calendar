@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>  <div>{{ meeting.date }}</div></h1>
     <vue-meeting-selector
       class="simple-example__meeting-selector"
       v-model="meeting"
@@ -8,6 +9,8 @@
       :meetings-days="meetingsDays"
       @next-date="nextDate"
       @previous-date="previousDate"
+      @change="getMeetings"
+      @meeting-slot-selected="getMeetingDate"
     />
     <p>meeting Selected: {{ meeting ? meeting : "No Meeting selected" }}</p>
   </div>
@@ -26,12 +29,19 @@ export default {
     return {
       date: new Date(),
       meetingsDays: [],
-      meeting: { date: "2021-01-15T08:00:00.000Z" },
+      meeting: { date: "2021-01-19T:09:00.000Z" },
       loading: true,
       nbDaysToDisplay: 5,
     };
   },
   methods: {
+    getMeetingDate(){
+        console.log("date selected = " + this.meeting.date)
+    },
+    getMeetings(rdv) {
+        console.log("get meetings = " + rdv.date)
+        return this.avaiable;
+    },
     // @click on button-right
     async nextDate() {
       console.log("nextDate");
@@ -41,7 +51,7 @@ export default {
       console.log("previousDate");
     },
   },
-  async created() {
+  created() {
     this.meetingsDays = data;
     this.loading = false;
   },
